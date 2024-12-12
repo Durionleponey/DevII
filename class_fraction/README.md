@@ -1,4 +1,4 @@
-# DevII
+# DevII - Class fraction
 
 ## File: Fraction class
 [Fraction.py](https://github.com/Durionleponey/DevII/blob/main/Fraction.py)
