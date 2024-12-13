@@ -1,0 +1,17 @@
+=== Rapport Récapitulatif ===
+Colonne : Quantité
+  Somme : 1067.0
+  Moyenne : 53.35
+  Minimum : 6.0
+  Maximum : 100.0
+  Nombre d'entrées : 20
+  Écart-type : 29.060755323976007
+----------------------
+Colonne : Prix unitaire (EUR)
+  Somme : 4652.8099999999995
+  Moyenne : 232.64049999999997
+  Minimum : 5.7
+  Maximum : 492.27
+  Nombre d'entrées : 20
+  Écart-type : 130.7135408240095
+----------------------
