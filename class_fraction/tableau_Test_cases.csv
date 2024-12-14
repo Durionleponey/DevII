@@ -1,0 +1,89 @@
+Méthode de test;Scénario;Entrée;Résultat attendu
+test_constructor_valid;Fraction positive valide;Fraction(3,4);numerator=3, denominator=4
+test_constructor_negative;Fraction avec numérateur négatif;Fraction(-3,4);numerator=-3, denominator=4
+test_constructor_negative;Fraction avec dénominateur négatif;Fraction(3,-4);numerator=-3, denominator=4
+test_constructor_negative;Fraction avec numérateur et dénominateur négatifs;Fraction(-3,-4);numerator=3, denominator=4
+test_constructor_invalid_den_zero;Dénominateur nul;Fraction(1,0);Exception FractionError
+test_str;Affichage fraction réduite;Fraction(6,8);"3/4"
+test_as_mixed_number;Fraction propre positive;Fraction(2,3);"0 + 2/3"
+test_as_mixed_number;Fraction propre négative;Fraction(-2,3);"0 - 2/3"
+test_as_mixed_number;Fraction impropre positive;Fraction(7,3);"2 + 1/3"
+test_as_mixed_number;Fraction impropre négative;Fraction(-7,3);"-2 - 1/3"
+test_as_mixed_number;Fraction nulle;Fraction(0,5);"0"
+test_as_mixed_number;Fraction entière positive;Fraction(4,2);"2"
+test_as_mixed_number;Fraction entière négative;Fraction(-4,2);"-2"
+test_as_mixed_number;Fraction impropre avec dénominateur négatif;Fraction(5,-3);"-1 - 2/3"
+test_as_mixed_number;Fraction propre négative;Fraction(-1,4);"0 - 1/4"
+test_as_mixed_number;Fraction réduite mais impropre;Fraction(9,6);"1 + 1/2"
+test_as_mixed_number;Fraction réduite avec partie fractionnaire nulle;Fraction(6,3);"2"
+test_as_mixed_number;Fraction négative avec dénominateur négatif;Fraction(-10,-3);"3 + 1/3"
+test_add;Addition deux fractions positives;Fraction(1,3)+Fraction(2,3);"1/1"
+test_add;Addition avec fraction nulle;Fraction(1,3)+Fraction(0,1);"1/3"
+test_add;Addition avec fraction négative;Fraction(1,3)+Fraction(-1,3);"0/1"
+test_add;Addition de deux fractions négatives;Fraction(-1,3)+Fraction(-2,3);"-1/1"
+test_add;Addition fraction positive et négative;Fraction(5,6)+Fraction(-1,2);"1/3"
+test_add;Addition fractions impropres;Fraction(7,3)+Fraction(5,2);"29/6"
+test_add;Addition fraction impropre et négative;Fraction(7,3)+Fraction(-2,3);"5/3"
+test_add;Addition avec réduction automatique;Fraction(3,6)+Fraction(1,6);"2/3"
+test_add;Addition réduction auto négative;Fraction(-3,6)+Fraction(1,6);"-1/3"
+test_sub;Soustraction fractions positives;Fraction(1,3)-Fraction(2,3);"-1/3"
+test_sub;Soustraction dénominateurs diff.;Fraction(1,2)-Fraction(1,4);"1/4"
+test_sub;Soustraction avec fraction négative;Fraction(1,3)-Fraction(-1,3);"2/3"
+test_sub;Soustraction deux fractions négatives;Fraction(-1,2)-Fraction(-1,4);"-1/4"
+test_sub;Soustraction fraction négative - positive;Fraction(-3,4)-Fraction(1,4);"-1/1"
+test_sub;Soustraction fractions impropres;Fraction(7,3)-Fraction(5,2);"-1/6"
+test_sub;Soustraction réduction automatique;Fraction(3,6)-Fraction(1,6);"1/3"
+test_sub;Soustraction avec fraction nulle;Fraction(1,3)-Fraction(0,1);"1/3"
+test_sub;Soustraction fraction nulle - fraction;Fraction(0,1)-Fraction(1,3);"-1/3"
+test_mul;Multiplication fractions positives;Fraction(1,2)*Fraction(2,3);"1/3"
+test_mul;Multiplication avec fraction nulle;Fraction(1,2)*Fraction(0,1);"0/1"
+test_mul;Multiplication avec fraction négative;Fraction(1,2)*Fraction(-1,2);"-1/4"
+test_mul;Multiplication deux négatives;Fraction(-1,3)*Fraction(-3,4);"1/4"
+test_mul;Multiplication positive*négative;Fraction(3,5)*Fraction(-2,3);"-2/5"
+test_mul;Multiplication fractions impropres;Fraction(7,3)*Fraction(5,2);"35/6"
+test_mul;Multiplication réduction automatique;Fraction(3,6)*Fraction(2,4);"1/4"
+test_mul;Multiplication par unité;Fraction(1,2)*Fraction(1,1);"1/2"
+test_mul;Multiplication signe mixte;Fraction(-3,5)*Fraction(4,7);"-12/35"
+test_truediv;Division fractions positives;Fraction(3,4)/Fraction(2,5);"15/8"
+test_truediv;Division par fraction négative;Fraction(3,4)/Fraction(-2,5);"-15/8"
+test_truediv;Division deux négatives;Fraction(-3,4)/Fraction(-2,5);"15/8"
+test_truediv;Division par fraction unitaire;Fraction(3,4)/Fraction(1,1);"3/4"
+test_truediv;Division unité par fraction;Fraction(1,1)/Fraction(3,4);"4/3"
+test_truediv;Division par fraction impropre;Fraction(5,3)/Fraction(7,2);"10/21"
+test_truediv;Division par elle-même;Fraction(7,3)/Fraction(7,3);"1/1"
+test_truediv;Division par fraction nulle;Fraction(3,4)/Fraction(0,1);Exception FractionError
+test_truediv;Division fraction nulle par autre;Fraction(0,1)/Fraction(2,3);"0/1"
+test_truediv;Division avec réduction auto;Fraction(6,8)/Fraction(9,12);"1/1"
+test_truediv;Division signes mixtes;Fraction(3,4)/Fraction(-2,3);"-9/8"
+test_eq;Égalité fractions équivalentes;Fraction(2,3)==Fraction(4,6);True
+test_eq;Inégalité fractions différentes;Fraction(2,3)==Fraction(1,2);False
+test_eq;Égalité fractions identiques;Fraction(1,3)==Fraction(1,3);True
+test_eq;Égalité fractions réduites;Fraction(6,9)==Fraction(2,3);True
+test_eq;Inégalité fractions impropres;Fraction(7,3)==Fraction(5,2);False
+test_eq;Égalité fractions négatives;Fraction(-3,4)==Fraction(3,-4);True
+test_eq;Inégalité signes opposés;Fraction(3,4)==Fraction(-3,4);False
+test_eq;Égalité fraction nulle;Fraction(0,1)==Fraction(0,5);True
+test_eq;Inégalité fraction nulle / non-nulle;Fraction(0,1)==Fraction(1,3);False
+test_eq;Comparaison autre type;Fraction(2,3)=="2/3";Exception FractionError
+test_is_integer;Fraction entière positive;Fraction(4,2);True
+test_is_integer;Fraction non entière;Fraction(3,2);False
+test_is_integer;Fraction entière réduite;Fraction(6,3);True
+test_is_integer;Fraction nulle;Fraction(0,5);True
+test_is_integer;Fraction entière négative;Fraction(-4,2);True
+test_is_integer;Fraction négative non entière;Fraction(-5,2);False
+test_is_proper;Fraction propre;Fraction(3,4);True
+test_is_proper;Fraction impropre;Fraction(5,4);False
+test_is_proper;Fraction réduite propre;Fraction(2,6);True
+test_is_proper;Fraction réduite impropre;Fraction(6,3);False
+test_is_proper;Fraction nulle;Fraction(0,5);True
+test_is_proper;Fraction négative propre;Fraction(-3,4);True
+test_is_proper;Fraction négative impropre;Fraction(-5,4);False
+test_is_adjacent_to;Adjacentes simples;Fraction(1,3) et Fraction(1,2);True (diff=1/6)
+test_is_adjacent_to;Adjacentes simples;Fraction(1,3) et Fraction(1,4);True (diff=1/12)
+test_is_adjacent_to;Non adjacent (décrit comme True dans code? - incohérence test?);Fraction(1,3) et Fraction(2,3);True (diff=1/3)
+test_is_adjacent_to;Adjacentes négatives;Fraction(-2,3) et Fraction(-1,3);True
+test_is_adjacent_to;Non adjacentes négatives;Fraction(-3,5) et Fraction(-1,5);False
+test_is_adjacent_to;Adjacentes impropres;Fraction(7,3) et Fraction(8,3);True
+test_is_adjacent_to;Non adjacentes impropres;Fraction(5,2) et Fraction(7,2);True (diff=1) – Ceci est un entier, donc 1 = 1/1
+test_is_adjacent_to;Adjacentes à elles-mêmes;Fraction(-3,9) et Fraction(-3,9);False (même fraction)
+test_is_adjacent_to;Adjacentes avec réduction;Fraction(3,6) et Fraction(2,6);True (1/2 et 1/3, diff=1/6)

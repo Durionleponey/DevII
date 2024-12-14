@@ -1,5 +1,6 @@
 import unittest
 from Fraction import Fraction, FractionError
+#utilisation de chatgpt dans ce fichier test_Fraction
 
 class TestFraction(unittest.TestCase):
 
