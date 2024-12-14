@@ -18,4 +18,7 @@
 ## Video: Test automatic + code coverage
 [Watch the video here](https://ephec-my.sharepoint.com/:v:/g/personal/he201721_students_ephec_be/EQGaRqG6ldBMhWVPg2Q8HE4Bjtsevah-OXhOxyUjornB8A?e=gC92cE)
 
+## File: Modifs
+[modif.md](https://github.com/Durionleponey/DevII/blob/main/class_fraction/modifs.md)
+
 
