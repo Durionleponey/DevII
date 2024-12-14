@@ -1,4 +1,3 @@
-from logging import raiseExceptions
 from math import gcd
 
 class FractionError(Exception):
@@ -28,7 +27,7 @@ class Fraction(Exception):
         if isinstance(num, int) and isinstance(den, int):
             pass
         else:
-            raise FractionError("'den' and 'num' shoud be integer")
+            raise FractionError("'den' and 'num' should be integer")
 
         if den == 0:
             raise FractionError("'den' can't be 0")
