@@ -10,7 +10,7 @@
 [Watch the video here](https://ephec-my.sharepoint.com/:v:/g/personal/he201721_students_ephec_be/EaRzk5zAqSBHhtt1mEICgS8B_vWvn-MrW5MpZOnizW-4UA?e=2hwb8s)
 
 ## File: Excel automatic test
-[Fraction_Test_Cases.xlsx](https://github.com/Durionleponey/DevII/blob/main/Fraction_Test_Cases.xlsx)
+[tableau_Test_cases.csv](https://github.com/Durionleponey/DevII/blob/main/class_fraction/tableau_Test_cases.csv)
 
 ## Video: Test automatic
 [Watch the video here](https://ephec-my.sharepoint.com/:v:/g/personal/he201721_students_ephec_be/EdslFzpwieRNulL7o9m6478B6MukezQvfcU5Uou0FTujJg?e=B8siuz)
