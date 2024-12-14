@@ -288,16 +288,16 @@ class Fraction(Exception):
 
         return abs(difference.numerator) == 1 and difference.denominator > 0
 
+if __name__ == '__main__':
+    #frac1 = Fraction(1, 1)
+    #print(frac1)
+    #print(frac1.as_mixed_number())
+    #frac2 = Fraction(1, 2)
+    #print(frac1.is_adjacent_to(frac2))
+    #
+    #frac3 = Fraction(1, 4)
+    #
+    #print(frac1-frac3)
 
-#frac1 = Fraction(1, 1)
-#print(frac1)
-#print(frac1.as_mixed_number())
-#frac2 = Fraction(1, 2)
-#print(frac1.is_adjacent_to(frac2))
-#
-#frac3 = Fraction(1, 4)
-#
-#print(frac1-frac3)
-
-frac = Fraction(4, 2)
-print(frac.as_mixed_number())
+    frac = Fraction(4, 2)
+    print(frac.as_mixed_number())
