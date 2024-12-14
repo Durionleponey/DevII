@@ -25,7 +25,7 @@ class Fraction(Exception):
 
         """
 
-        if isinstance(num, int) or isinstance(den, int):
+        if isinstance(num, int) and isinstance(den, int):
             pass
         else:
             raise FractionError("'den' and 'num' shoud be integer")
@@ -226,7 +226,6 @@ class Fraction(Exception):
         """
         return self.numerator / self.denominator
 
-    # TODO : [BONUS] You can overload other operators if you wish (ex : <, >, ...)
 
     # ------------------ Properties checking  ------------------
     @property

@@ -27,6 +27,14 @@ class TestFraction(unittest.TestCase):
         with self.assertRaises(FractionError):#with sert à voir si une exception est levée
             Fraction(1, 0)
 
+    def test_constructor_non_integer_values(self):
+        with self.assertRaises(FractionError):
+            Fraction(1.5, 2)  # numérateur non entier
+
+        with self.assertRaises(FractionError):
+            Fraction(3, "4")  # dénominateur non entier
+
+
     # --- Tests pour la méthode __str__ ---
     def test_str(self):
         frac = Fraction(3, 4)
@@ -148,6 +156,11 @@ class TestFraction(unittest.TestCase):
         self.assertEqual(result.numerator, -1)
         self.assertEqual(result.denominator, 3)
 
+    def test_add_not_instance(self):
+        frac15 = Fraction(-3, 6)
+        with self.assertRaises(FractionError):
+            frac15 + 1/3
+
     # --- Tests pour la soustraction ---
     def test_sub(self):
         # Cas simple : soustraction de deux fractions positives
@@ -208,6 +221,11 @@ class TestFraction(unittest.TestCase):
         result = frac14 - frac1
         self.assertEqual(result.numerator, -1)
         self.assertEqual(result.denominator, 3)
+
+    def test_sub_not_instance(self):
+        frac15 = Fraction(-3, 6)
+        with self.assertRaises(FractionError):
+            frac15 - 1/3
 
     # --- Tests pour la multiplication ---
     def test_mul(self):
@@ -270,6 +288,11 @@ class TestFraction(unittest.TestCase):
         result = frac14 * frac15
         self.assertEqual(result.numerator, -12)
         self.assertEqual(result.denominator, 35)
+
+    def test_mul_not_instance(self):
+        frac15 = Fraction(-3, 6)
+        with self.assertRaises(FractionError):
+            frac15 * 1/3
 
     # --- Tests pour la division ---
     def test_truediv(self):
@@ -345,6 +368,11 @@ class TestFraction(unittest.TestCase):
         self.assertEqual(result.numerator, -9)
         self.assertEqual(result.denominator, 8)
 
+    def test_div_not_instance(self):
+        frac15 = Fraction(-3, 6)
+        with self.assertRaises(FractionError):
+            frac15 / 1/3
+
     # --- Tests pour __eq__ ---
     def test_eq(self):
         # Égalité entre fractions équivalentes
@@ -395,31 +423,31 @@ class TestFraction(unittest.TestCase):
             frac1 == "2/3"
 
     # --- Tests pour les propriétés ---
+
     def test_is_integer(self):
-        def test_is_integer(self):
-            # Fraction réduite qui est un entier
-            frac = Fraction(4, 2)  # Équivaut à 2
-            self.assertTrue(frac.is_integer)
+        # Fraction réduite qui est un entier
+        frac = Fraction(4, 2)  # Équivaut à 2
+        self.assertTrue(frac.is_integer)
 
-            # Fraction réduite qui n'est pas un entier
-            frac = Fraction(3, 2)  # Équivaut à 1.5
-            self.assertFalse(frac.is_integer)
+        # Fraction réduite qui n'est pas un entier
+        frac = Fraction(3, 2)  # Équivaut à 1.5
+        self.assertFalse(frac.is_integer)
 
-            # Fraction déjà entière (numérateur multiple du dénominateur)
-            frac = Fraction(6, 3)  # Équivaut à 2
-            self.assertTrue(frac.is_integer)
+        # Fraction déjà entière (numérateur multiple du dénominateur)
+        frac = Fraction(6, 3)  # Équivaut à 2
+        self.assertTrue(frac.is_integer)
 
-            # Fraction nulle (0 est toujours un entier)
-            frac = Fraction(0, 5)  # Équivaut à 0
-            self.assertTrue(frac.is_integer)
+        # Fraction nulle (0 est toujours un entier)
+        frac = Fraction(0, 5)  # Équivaut à 0
+        self.assertTrue(frac.is_integer)
 
-            # Fraction négative entière
-            frac = Fraction(-4, 2)  # Équivaut à -2
-            self.assertTrue(frac.is_integer)
+        # Fraction négative entière
+        frac = Fraction(-4, 2)  # Équivaut à -2
+        self.assertTrue(frac.is_integer)
 
-            # Fraction négative non entière
-            frac = Fraction(-5, 2)  # Équivaut à -2.5
-            self.assertFalse(frac.is_integer)
+        # Fraction négative non entière
+        frac = Fraction(-5, 2)  # Équivaut à -2.5
+        self.assertFalse(frac.is_integer)
 
     def test_is_proper(self):
         # Cas simple : fraction propre
@@ -492,6 +520,11 @@ class TestFraction(unittest.TestCase):
         frac14 = Fraction(3, 6)  # Réduit à 1/2
         frac15 = Fraction(2, 6)  # Réduit à 1/3
         self.assertTrue(frac14.is_adjacent_to(frac15))  # Différence = 1/6
+
+    def test_is_adjacent_not_instance(self):
+        frac15 = Fraction(-3, 6)
+        with self.assertRaises(FractionError):
+            frac15.is_adjacent_to(1 / 3)
 
 
 if __name__ == "__main__":

@@ -13,6 +13,6 @@
 [tableau_Test_cases.csv](https://github.com/Durionleponey/DevII/blob/main/class_fraction/tableau_Test_cases.csv)
 
 ## Video: Test automatic
-[Watch the video here](https://ephec-my.sharepoint.com/:v:/g/personal/he201721_students_ephec_be/EdslFzpwieRNulL7o9m6478B6MukezQvfcU5Uou0FTujJg?e=B8siuz)
+[Watch the video here]()
 
 
