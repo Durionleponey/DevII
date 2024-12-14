@@ -1,7 +1,7 @@
 # DevII - Class fraction
 
 ## File: Fraction class
-[Fraction.py](https://github.com/Durionleponey/DevII/blob/main/Fraction.py)
+[Fraction.py](https://github.com/Durionleponey/DevII/blob/main/class_fraction/Fraction.py)
 
 ## File: Fraction test non-automatic
 [test_Fraction.py](https://github.com/Durionleponey/DevII/blob/main/test_Fraction.py)
