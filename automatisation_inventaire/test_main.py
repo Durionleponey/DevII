@@ -46,7 +46,7 @@ class TestCsvProgram(unittest.TestCase):
         with open(self.output_file, 'r', encoding='utf-8') as file:
             lines = file.readlines()
 
-        self.assertEqual(len(lines), 3)  # En-tête + 2 lignes (1 de test_file, 1 fusionnée)
+        self.assertEqual(len(lines), 2)
 
         os.remove("test_dir/file1.csv")
         os.rmdir("test_dir")

@@ -87,14 +87,26 @@ Le programme permet de gérer des fichiers CSV, effectuer des recherches rapides
 
 ### Rapport sur l’utilisation des outils d’IA
 
-Dans ce projet, **ChatGPT** a été l’outil principal d’assistance. Il a été utilisé pour générer du code Python, expliquer certains concepts, et fournir des idées pour structurer le projet. ChatGPT s’est montré particulièrement efficace pour produire rapidement des solutions fonctionnelles et fournir des recommandations adaptées au langage Python.
+Dans ce projet, **ChatGPT** a été l’outil principal d’assistance.
+Il a été utilisé pour générer du code Python, expliquer certains concepts, et fournir des idées pour structurer le projet.
+ChatGPT s’est montré particulièrement efficace pour produire rapidement des solutions fonctionnelles
+et fournir des recommandations adaptées au langage Python.
 
-Par exemple, lors de la création d’une fonctionnalité pour trier des données ou gérer des exceptions, ChatGPT a proposé des implémentations claires et concises. De plus, son expertise en Python, un langage qu’il maîtrise très bien, a permis d’aboutir à des solutions exploitables sans trop de corrections.
+Par exemple, lors de la création d’une fonctionnalité pour trier des données ou gérer des exceptions,
+ChatGPT a proposé des implémentations claires et concises.
+De plus, son expertise en Python, un langage qu’il maîtrise très bien,
+a permis d’aboutir à des solutions exploitables sans trop de corrections.
 
 Cependant, certaines **limites** ont été rencontrées :
 - ChatGPT propose souvent des solutions génériques qui nécessitent des ajustements pour coller parfaitement aux spécificités du projet.
 - Lorsqu’il s’agit de configurations plus complexes ou de choix de design détaillés, l’IA manque parfois de profondeur et nécessite une validation humaine.
 
-Il est aussi important de noter que ce projet, étant **relativement petit**, se situe encore dans une échelle où ChatGPT reste performant et pertinent. Pour des projets plus vastes, cette approche pourrait atteindre ses limites, notamment pour la gestion des dépendances complexes ou la coordination entre plusieurs modules. En revanche, pour un projet Python, la qualité des suggestions montre que l’outil est bien optimisé pour ce langage.
+Il est aussi important de noter que ce projet, étant **relativement petit**,
+se situe encore dans une échelle où ChatGPT reste performant et pertinent. Pour des projets plus vastes,
+cette approche pourrait atteindre ses limites,
+notamment pour la gestion des dépendances complexes ou la coordination entre plusieurs modules.
+En revanche, pour un projet Python, la qualité des suggestions montre que l’outil est bien optimisé pour ce langage.
 
-En résumé, ChatGPT a été un excellent assistant pour un projet de cette taille, mais son utilisation requiert toujours une **supervision et un ajustement humains** pour garantir des résultats de qualité.
+En résumé, ChatGPT a été un excellent assistant pour un projet de cette taille,
+mais son utilisation requiert toujours une **supervision et un ajustement humains**
+pour garantir des résultats de qualité.
