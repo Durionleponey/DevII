@@ -1,7 +1,7 @@
 [lien lucidChart-UML](https://lucid.app/lucidchart/3985bc92-c516-48af-a028-01b02398eb7f/edit?viewport_loc=-2880%2C-1207%2C2560%2C1276%2C0_0&invitationId=inv_56667d76-bcca-4660-b00d-c8202266a86d)
 
-[lien video-UML]()
-la video arrive dans 3 minutes
+[lien video-UML](https://ephec-my.sharepoint.com/:v:/g/personal/he201721_students_ephec_be/EYUpexB1T0xNoxX6ihGv6cMBmds4FBUeG01VYnQh-3JWRQ?e=bctFND)
+
 
 ![animaux](img/animal.png)
 
@@ -20,7 +20,7 @@ Les espèces (comme Lapin, Mouton) sont des sous-classes de la classe mère Anim
 
 ![classe](img/classe.png)
 
-#Class classe:
+Class classe:
 
 Les classes Élève et Professeur héritent de la classe mère Personne, qui centralise les informations communes.  
 
