@@ -1,5 +1,6 @@
 import csv
 import os
+import argparse
 
 class CSVReader:
     def __init__(self, file_path):
@@ -35,13 +36,17 @@ class CSVReader:
         for row in self.data:
             print(row)
 
-# Nouveau fichier pour lire et merger tous les fichiers CSV
+
 def merge_all_csv_in_directory(directory, output_file):
     """
     Lit tous les fichiers CSV dans un répertoire donné et fusionne leur contenu dans un seul fichier.
     """
     merged_data = []
     header_included = False
+
+    if not os.path.isdir(directory):
+        print(f"Erreur : Le répertoire {directory} n'existe pas ou n'est pas un répertoire.")
+        return
 
     for filename in os.listdir(directory):
         if filename.endswith(".csv"):
@@ -66,59 +71,6 @@ def merge_all_csv_in_directory(directory, output_file):
     except Exception as e:
         print(f"Erreur lors de l'écriture du fichier fusionné : {e}")
 
-def search_in_csv(file_path):
-    """
-    Permet de rechercher des informations rapidement dans un fichier CSV par produit, catégorie, prix, etc.
-    """
-    reader = CSVReader(file_path)
-    reader.read_csv()
-    data = reader.get_data()
-
-    if not data:
-        print("Le fichier est vide ou n'a pas pu être lu.")
-        return
-
-    headers = data[0]
-    while True:
-        try:
-            print("\n=== Menu de Recherche ===")
-            print("0. Quitter")
-            print("1. Rechercher par colonne")
-            print("2. Générer un rapport récapitulatif")
-
-            choice = int(input("Votre choix : "))
-
-            if choice == 0:
-                print("Fermeture du menu.")
-                break
-
-            if choice == 1:
-                print("\nColonnes disponibles :")
-                for i, header in enumerate(headers):
-                    print(f"{i + 1}. {header}")
-
-                col_choice = int(input("Choisissez une colonne : "))
-
-                if 1 <= col_choice <= len(headers):
-                    search_column = headers[col_choice - 1]
-                    search_value = input(f"Entrez la valeur à rechercher dans '{search_column}' : ")
-
-                    print(f"\nRésultats pour '{search_value}' dans la colonne '{search_column}':")
-                    col_index = col_choice - 1
-                    for row in data[1:]:
-                        if col_index < len(row) and search_value.lower() in row[col_index].lower():
-                            print(row)
-                    print("\nRecherche terminée.")
-                else:
-                    print("Choix de colonne invalide. Veuillez réessayer.")
-            elif choice == 2:
-                generate_summary_report(data)
-            else:
-                print("Choix invalide. Veuillez réessayer.")
-        except ValueError:
-            print("Veuillez entrer un nombre valide.")
-        except Exception as e:
-            print(f"Erreur : {e}")
 
 def generate_summary_report(data):
     """
@@ -175,11 +127,68 @@ def generate_summary_report(data):
     except Exception as e:
         print(f"Erreur lors de l'écriture du rapport récapitulatif : {e}")
 
-# Exemple d'utilisation
-if __name__ == "__main__":
-    directory_path = "./csv_files"  # Remplacez par le chemin de votre répertoire contenant les fichiers CSV
-    output_file = "merged.csv"  # Nom du fichier de sortie fusionné
-    merge_all_csv_in_directory(directory_path, output_file)
 
-    # Recherche dans le fichier CSV fusionné
-    search_in_csv(output_file)
+def search_in_csv(file_path):
+    """
+    Permet de rechercher des informations rapidement dans un fichier CSV par produit, catégorie, prix, etc.
+    """
+    reader = CSVReader(file_path)
+    reader.read_csv()
+    data = reader.get_data()
+
+    if not data:
+        print("Le fichier est vide ou n'a pas pu être lu.")
+        return
+
+    headers = data[0]
+    while True:
+        try:
+            print("\n=== Menu de Recherche ===")
+            print("0. Quitter")
+            print("1. Rechercher par colonne")
+            print("2. Générer un rapport récapitulatif")
+
+            choice = int(input("Votre choix : "))
+
+            if choice == 0:
+                print("Fermeture du menu.")
+                break
+
+            if choice == 1:
+                print("\nColonnes disponibles :")
+                for i, header in enumerate(headers):
+                    print(f"{i + 1}. {header}")
+
+                col_choice = int(input("Choisissez une colonne : "))
+
+                if 1 <= col_choice <= len(headers):
+                    search_column = headers[col_choice - 1]
+                    search_value = input(f"Entrez la valeur à rechercher dans '{search_column}' : ")
+
+                    print(f"\nRésultats pour '{search_value}' dans la colonne '{search_column}':")
+                    col_index = col_choice - 1
+                    for row in data[1:]:
+                        if col_index < len(row) and search_value.lower() in row[col_index].lower():
+                            print(row)
+                    print("\nRecherche terminée.")
+                else:
+                    print("Choix de colonne invalide. Veuillez réessayer.")
+            elif choice == 2:
+                generate_summary_report(data)
+            else:
+                print("Choix invalide. Veuillez réessayer.")
+        except ValueError:
+            print("Veuillez entrer un nombre valide.")
+        except Exception as e:
+            print(f"Erreur : {e}")
+
+
+if __name__ == "__main__":
+    parser = argparse.ArgumentParser(description="Outil de fusion et d'analyse de fichiers CSV.")
+    parser.add_argument("--dir", default="./csv_files", help="Chemin du répertoire contenant les CSV à fusionner (par défaut: ./csv_files).")
+    parser.add_argument("--output", default="merged.csv", help="Nom du fichier CSV fusionné (par défaut: merged.csv).")
+
+    args = parser.parse_args()
+
+    merge_all_csv_in_directory(args.dir, args.output)
+    search_in_csv(args.output)
