@@ -1,6 +1,5 @@
 import csv
 import os
-import argparse
 
 class CSVReader:
     def __init__(self, file_path):
@@ -13,15 +12,17 @@ class CSVReader:
     def read_csv(self):
         """
         Lit le fichier CSV et stocke les données dans une liste de listes.
+        Lève FileNotFoundError si le fichier n'existe pas.
         """
+        if not os.path.exists(self.file_path):
+            raise FileNotFoundError(f"Le fichier {self.file_path} n'a pas été trouvé.")
+
         try:
             with open(self.file_path, 'r', newline='', encoding='utf-8') as file:
                 reader = csv.reader(file)
                 self.data = [row for row in reader]
-        except FileNotFoundError:
-            print(f"Erreur : Le fichier {self.file_path} n'a pas été trouvé.")
         except Exception as e:
-            print(f"Erreur lors de la lecture du fichier : {e}")
+            raise Exception(f"Erreur lors de la lecture du fichier {self.file_path} : {e}")
 
     def get_data(self):
         """
@@ -40,18 +41,17 @@ class CSVReader:
 def merge_all_csv_in_directory(directory, output_file):
     """
     Lit tous les fichiers CSV dans un répertoire donné et fusionne leur contenu dans un seul fichier.
+    Lève NotADirectoryError si le répertoire n'existe pas ou n'est pas un répertoire.
     """
+    if not os.path.isdir(directory):
+        raise NotADirectoryError(f"Le répertoire {directory} n'existe pas ou n'est pas un répertoire.")
+
     merged_data = []
     header_included = False
-
-    if not os.path.isdir(directory):
-        print(f"Erreur : Le répertoire {directory} n'existe pas ou n'est pas un répertoire.")
-        return
 
     for filename in os.listdir(directory):
         if filename.endswith(".csv"):
             file_path = os.path.join(directory, filename)
-            print(f"Lecture du fichier : {filename}")
             reader = CSVReader(file_path)
             reader.read_csv()
             data = reader.get_data()
@@ -62,7 +62,6 @@ def merge_all_csv_in_directory(directory, output_file):
                     header_included = True
                 merged_data.extend(data[1:])  # Ajouter le reste des données
 
-    # Écrire les données fusionnées dans le fichier de sortie
     try:
         with open(output_file, 'w', newline='', encoding='utf-8') as file:
             writer = csv.writer(file)
@@ -85,17 +84,22 @@ def generate_summary_report(data):
 
     # Calcul des statistiques pour chaque colonne numérique
     for i, header in enumerate(headers):
-        column_values = [row[i] for row in data[1:] if i < len(row) and row[i].replace('.', '', 1).isdigit()]
+        column_values = [
+            row[i] for row in data[1:]
+            if i < len(row) and row[i].replace('.', '', 1).isdigit()
+        ]
         column_values = list(map(float, column_values))
 
         if column_values:
+            mean = sum(column_values) / len(column_values)
+            variance = sum((x - mean) ** 2 for x in column_values) / len(column_values)
             stats[header] = {
                 "somme": sum(column_values),
-                "moyenne": sum(column_values) / len(column_values),
+                "moyenne": mean,
                 "minimum": min(column_values),
                 "maximum": max(column_values),
                 "count": len(column_values),
-                "écart-type": (sum((x - (sum(column_values) / len(column_values))) ** 2 for x in column_values) / len(column_values)) ** 0.5
+                "écart-type": variance ** 0.5
             }
 
     # Afficher le rapport
@@ -133,7 +137,15 @@ def search_in_csv(file_path):
     Permet de rechercher des informations rapidement dans un fichier CSV par produit, catégorie, prix, etc.
     """
     reader = CSVReader(file_path)
-    reader.read_csv()
+    try:
+        reader.read_csv()
+    except FileNotFoundError as e:
+        print(e)
+        return
+    except Exception as e:
+        print(e)
+        return
+
     data = reader.get_data()
 
     if not data:
@@ -184,11 +196,10 @@ def search_in_csv(file_path):
 
 
 if __name__ == "__main__":
-    parser = argparse.ArgumentParser(description="Outil de fusion et d'analyse de fichiers CSV.")
-    parser.add_argument("--dir", default="./csv_files", help="Chemin du répertoire contenant les CSV à fusionner (par défaut: ./csv_files).")
-    parser.add_argument("--output", default="merged.csv", help="Nom du fichier CSV fusionné (par défaut: merged.csv).")
-
-    args = parser.parse_args()
-
-    merge_all_csv_in_directory(args.dir, args.output)
-    search_in_csv(args.output)
+    directory_path = "./csv_files"  # Remplacez par le chemin de votre répertoire contenant les fichiers CSV
+    output_file = "merged.csv"  # Nom du fichier de sortie fusionné
+    try:
+        merge_all_csv_in_directory(directory_path, output_file)
+        search_in_csv(output_file)
+    except NotADirectoryError as e:
+        print(e)

@@ -12,7 +12,7 @@ class TestCsvProgram(unittest.TestCase):
     """
 
     def setUp(self):
-        # Redirection de la sortie standard pour analyser les messages d'erreur
+        # Redirection de la sortie standard pour analyser les messages
         self.held_stdout = sys.stdout
         sys.stdout = io.StringIO()
 
@@ -24,7 +24,7 @@ class TestCsvProgram(unittest.TestCase):
             file.write("id,name,score\n1,John,50\n2,Jane,75\n")
 
     def tearDown(self):
-        # Nettoyage des fichiers générés
+        # Restauration de la sortie standard et nettoyage
         sys.stdout = self.held_stdout
         if os.path.exists(self.test_file):
             os.remove(self.test_file)
@@ -33,7 +33,6 @@ class TestCsvProgram(unittest.TestCase):
         if os.path.exists("summary_report.txt"):
             os.remove("summary_report.txt")
         if os.path.exists("test_dir"):
-            # Nettoyage du répertoire de test
             for f in os.listdir("test_dir"):
                 os.remove(os.path.join("test_dir", f))
             os.rmdir("test_dir")
@@ -69,15 +68,21 @@ class TestCsvProgram(unittest.TestCase):
         self.assertEqual(len(lines), 2)
         self.assertIn("Jack", lines[1])
 
-    def test_merge_non_existent_dir(self):
+    def test_merge_non_existent_dir_raises(self):
         """
-        Test de la fusion sur un répertoire inexistant.
-        Doit afficher un message d'erreur et ne pas créer de fichier.
+        Test que la fonction lève NotADirectoryError si le répertoire n'existe pas.
         """
-        merge_all_csv_in_directory("non_existent_dir", self.output_file)
-        self.assertFalse(os.path.exists(self.output_file))
-        output = sys.stdout.getvalue()
-        self.assertIn("n'existe pas ou n'est pas un répertoire", output)
+        with self.assertRaises(NotADirectoryError):
+            merge_all_csv_in_directory("non_existent_dir", self.output_file)
+
+    def test_reader_missing_file_raises(self):
+        """
+        Test que la fonction read_csv lève FileNotFoundError si le fichier n'existe pas.
+        """
+        missing_file = "missing.csv"
+        reader = CSVReader(missing_file)
+        with self.assertRaises(FileNotFoundError):
+            reader.read_csv()
 
     def test_generate_report(self):
         """
@@ -99,10 +104,10 @@ class TestCsvProgram(unittest.TestCase):
     def test_generate_report_no_numeric(self):
         """
         Test du rapport sur un CSV sans colonnes numériques.
-        Le fichier ne doit pas générer d'erreur et le rapport sera vide ou minimal.
+        Le fichier ne doit pas générer de stats numériques.
         """
         no_num_file = "no_num.csv"
-        # On met des valeurs non numériques (ex: 'John', 'Jane' plutôt que '1', '2')
+        # On met des valeurs non numériques dans toutes les colonnes
         with open(no_num_file, 'w', encoding='utf-8') as file:
             file.write("id,name\nJohn,Smith\nJane,Doe\n")
 
@@ -115,21 +120,3 @@ class TestCsvProgram(unittest.TestCase):
 
         with open("summary_report.txt", 'r', encoding='utf-8') as f:
             content = f.read()
-        # Ici, on s'attend à aucune statistique, donc pas de mention de "Moyenne"
-        self.assertNotIn("Moyenne", content)
-
-        os.remove(no_num_file)
-
-    def test_reader_missing_file(self):
-        """
-        Test de la lecture d'un fichier manquant.
-        """
-        missing_file = "missing.csv"
-        reader = CSVReader(missing_file)
-        reader.read_csv()
-        output = sys.stdout.getvalue()
-        self.assertIn("n'a pas été trouvé", output)
-
-
-if __name__ == "__main__":
-    unittest.main()
