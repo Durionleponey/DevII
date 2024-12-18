@@ -6,7 +6,7 @@ class CSVReader:
         """
         Initialise le chemin du fichier CSV et une variable pour stocker les données.
 
-        PRE:""" Les fichiers à traiter doivent être strictement formatés de la même manière 
+        PRE: Les fichiers à traiter doivent être strictement formatés de la même manière 
                 que les exemples de fichiers CSV situés dans le dossier `csv_files`.
         """
         self.file_path = file_path
